@@ -71,7 +71,7 @@ export function DBOperations(dbName: string, version: number, currentStore: stri
   );
 
   const getByID = useCallback(
-    <T>(id: string | number) => new Promise<T>((resolve, reject) => {
+    <T>(id: string | number | string[]) => new Promise<T>((resolve, reject) => {
       openDatabase(dbName, version).then((db: IDBDatabase) => {
         validateBeforeTransaction(db, currentStore, reject);
         const { store } = createReadonlyTransaction(db, currentStore, resolve, reject);
