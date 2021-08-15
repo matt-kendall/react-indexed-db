@@ -10,13 +10,13 @@ interface IndexedDBProps {
 
 interface ObjectStoreMeta {
   store: string;
-  storeConfig: { keyPath: string; autoIncrement: boolean; [key: string]: any };
+  storeConfig: { keyPath: string | string[]; autoIncrement: boolean; [key: string]: any };
   storeSchema: ObjectStoreSchema[];
 }
 
 interface ObjectStoreSchema {
   name: string;
-  keypath: string;
+  keypath: string | string[];
   options: { unique: boolean; [key: string]: any };
 }
 
