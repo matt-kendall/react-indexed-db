@@ -94,9 +94,16 @@ export function DBOperations(dbName: string, version: number, currentStore: stri
           const request = store.openCursor(keyRange);
 
           request.onsuccess = (event: Event) => {
-            cursorCallback(event);
-            resolve();
+            const cursor = (event?.target as IDBRequest)?.result;
+            if (cursor) {
+              cursorCallback(event);
+            }
+            else {
+              resolve();
+            }
           };
+
+          request.onerror = reject;
         });
       });
     },
